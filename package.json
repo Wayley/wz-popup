@@ -8,6 +8,10 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-postcss": "^1.6.2",
     "vue": "^2.5.17"
   },
   "devDependencies": {
