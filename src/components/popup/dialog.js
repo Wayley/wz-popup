@@ -129,9 +129,11 @@ Dialog.prototype = {
     this.isShow = false;
 
     const dialog = document.getElementById(this.options.id);
-    dialog.parentNode.removeChild(dialog);
+    if (dialog && dialog.parentNode) {
+      dialog.parentNode.removeChild(dialog);
 
-    queue.splice(0, 1);
+      queue.splice(0, 1);
+    }
   }
 };
 export default Dialog;

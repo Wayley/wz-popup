@@ -25,6 +25,9 @@ export function bindEvent(element, eventName, callback, unbind) {
       method = 'attachEvent';
     }
   }
+  if (!element) {
+    // console.log(333, element);
+  }
   element[method](eventName, function(e) {
     callback(e);
   });

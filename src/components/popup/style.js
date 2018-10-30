@@ -47,9 +47,11 @@ Style.prototype = {
   remove() {
     this.isShow = false;
     const style = document.getElementById(this.id);
-    style.parentNode.removeChild(style);
-    // 删除队列子项
-    queue.splice(0, 1);
+    if (style && style.parentNode) {
+      style.parentNode.removeChild(style);
+      // 删除队列子项
+      queue.splice(0, 1);
+    }
   }
 };
 export default Style;

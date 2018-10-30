@@ -76,28 +76,29 @@ Mask.prototype = {
   remove() {
     this.isShow = false;
     const mask = document.getElementById(this.id);
+    if (mask && mask.parentNode) {
+      // 解绑事件
+      bindEvent(
+        mask,
+        'touchstart',
+        function(e) {
+          e.preventDefault();
+        },
+        true
+      );
+      bindEvent(
+        mask,
+        'touchmove',
+        function(e) {
+          e.preventDefault();
+        },
+        true
+      );
 
-    // 解绑事件
-    bindEvent(
-      mask,
-      'touchstart',
-      function(e) {
-        e.preventDefault();
-      },
-      true
-    );
-    bindEvent(
-      mask,
-      'touchmove',
-      function(e) {
-        e.preventDefault();
-      },
-      true
-    );
-
-    mask.parentNode.removeChild(mask);
-    // 删除队列子项
-    queue.splice(0, 1);
+      mask.parentNode.removeChild(mask);
+      // 删除队列子项
+      queue.splice(0, 1);
+    }
   }
 };
 export default Mask;
