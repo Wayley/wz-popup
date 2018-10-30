@@ -27,15 +27,12 @@ export default {
         console.log('500ms后会关闭');
       }
       const popup = new Popup({ v: '1111', content: '你好啊1' });
-      const popup2 = new Popup({
-        v: '2222',
-        content: '你好啊2',
-        autoShow: true
-      });
+
       const popup3 = new Popup({
         v: '3333',
         content: '你好啊3',
-        autoShow: false, //点击按钮回调处理完成之后是否自动关闭弹框  默认是true ; 如果回调是异步的 那么可设置为false 并再回调中手动关闭
+        autoShow: false,
+        autoClose: false, //点击按钮回调处理完成之后是否自动关闭弹框  默认是true ; 如果回调是异步的 那么可设置为false 并再回调中手动关闭  不传入btns时会失效
         btns: [
           {
             name: 'q取消',
@@ -53,7 +50,25 @@ export default {
           }
         ]
       });
-      popup3.show();
+      // popup3.show();
+      const popup2 = new Popup({
+        v: '2222',
+        content: '你好啊2',
+        autoShow: true,
+        autoClose: true,
+        btns: [
+          {
+            name: 'q取消',
+            callback: function() {
+              console.log('取消');
+            }
+          },
+          {
+            name: '其他',
+            callback: this.cb
+          }
+        ]
+      });
     }
   }
 };

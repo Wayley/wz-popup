@@ -1,5 +1,6 @@
 import {
   createElement,
+  removeElementById,
   bindEvent,
   opacityAnimation,
   extend,
@@ -97,6 +98,14 @@ Dialog.prototype = {
         bindEvent(btn, 'click', function(e) {
           var handle = self.options.btns[index]['callback'];
           handle.call(handle, self);
+          if (self.options.autoClose) {
+            self.remove();
+            //
+            const styleId = `${prefixCls}` + '-style-' + self.options.v;
+            const maskId = `${prefixCls}` + '-mask-' + self.options.v;
+            removeElementById(styleId);
+            removeElementById(maskId);
+          }
           e.preventDefault();
         });
       })(i);

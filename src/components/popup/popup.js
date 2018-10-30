@@ -45,10 +45,10 @@ function Popup(options) {
     } else {
       this.options.autoClose = true;
     }
-    this.style = new Style({
-      v: this.options.v,
-      autoShow: !this.options.autoShow
-    });
+    console.log(this.options.autoClose);
+
+    // 三个实例
+    this.style = new Style(this.options.v, this.options.autoShow);
     this.mask = new Mask({
       opacity: 0.5,
       delay: 200,

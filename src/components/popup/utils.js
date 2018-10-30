@@ -10,6 +10,13 @@ export function createElement(nodeName, options) {
   }
   return element;
 }
+export function removeElementById(id) {
+  if (typeof id === 'undefined') return;
+  const element = document.getElementById(id);
+  if (element && element.parentNode) {
+    element.parentNode.removeChild(element);
+  }
+}
 export function bindEvent(element, eventName, callback, unbind) {
   let method;
   if (window.addEventListener) {
@@ -101,6 +108,7 @@ export function getCss() {
 }
 export default {
   createElement,
+  removeElementById,
   bindEvent,
   opacityAnimation,
   extend,
