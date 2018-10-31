@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import index from '../dist/popup.es.js';
-import { Popup, Mask, Style, Dialog } from './components/popup/index.js';
+import { Popup } from '../dist/popup.es.js';
+// import { Popup, Mask, Style, Dialog } from './components/popup/index.js';
 // import Popup from './components/popup/index.js';
 
 export default {
@@ -27,19 +27,37 @@ export default {
         console.log('500ms后会关闭');
       }
       const popup = new Popup({
-        v: '1111',
+        v: 'v1' + Math.floor(Math.random() * 10000) + new Date().valueOf(),
         autoShow: false, // 'undefined',undefined,0,'0',false,'false'
-        content: '你好啊1'
+        content: 'Hello World 1'
       });
 
+      const popup2 = new Popup({
+        v: 'v2' + Math.floor(Math.random() * 10000) + new Date().valueOf(),
+        content: 'Hello World 2',
+        autoShow: true,
+        autoClose: true,
+        btns: [
+          {
+            name: '取消',
+            callback: function() {
+              console.log('取消');
+            }
+          },
+          {
+            name: '其他',
+            callback: this.cb
+          }
+        ]
+      });
       const popup3 = new Popup({
-        v: '3333',
-        content: '你好啊3',
-        autoShow: false,
+        v: 'v3' + Math.floor(Math.random() * 10000) + new Date().valueOf(),
+        content: 'Hello World 3',
+        autoShow: true,
         autoClose: false, //点击按钮回调处理完成之后是否自动关闭弹框  默认是true ; 如果回调是异步的 那么可设置为false 并再回调中手动关闭  不传入btns时会失效
         btns: [
           {
-            name: 'q取消',
+            name: '取消',
             callback: function() {
               console.log('取消');
             }
@@ -54,41 +72,7 @@ export default {
           }
         ]
       });
-      popup3.show();
-      const popup2 = new Popup({
-        v: '2222',
-        content: '你好啊2',
-        autoShow: true,
-        autoClose: true,
-        btns: [
-          {
-            name: 'q取消',
-            callback: function() {
-              console.log('取消');
-            }
-          },
-          {
-            name: '其他',
-            callback: this.cb
-          }
-        ]
-      });
-      const popup4 = new Popup('你好啊4');
-      popup.show();
-    },
-    dd() {
-      let a = 'a';
-      function ED(a) {
-        a = a || a;
-        console.log(a, 222);
-      }
-      ED.prototype = {
-        show() {
-          console.log(111, a);
-        }
-      };
-      let s = new ED('b');
-      s.show();
+      // const popup4 = new Popup('Hello World 4');
     }
   }
 };
