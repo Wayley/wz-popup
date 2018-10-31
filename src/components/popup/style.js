@@ -1,17 +1,10 @@
-import { createElement, commonData, getCss } from './utils';
+import { createElement, commonData, checkBooleanFalse, getCss } from './utils';
 const prefixCls = commonData().prefixCls; // 前缀
 let queue = []; // 队列
 /* Style */
 function Style(v, autoShow) {
-  if (
-    (typeof autoShow === 'boolean' && !autoShow) ||
-    autoShow === 0 ||
-    autoShow === '0'
-  ) {
-    this.autoShow = false;
-  } else {
-    this.autoShow = true;
-  }
+  this.autoShow = !checkBooleanFalse(autoShow);
+
   this.v =
     typeof v === 'number' || typeof v === 'string'
       ? v
@@ -36,7 +29,7 @@ Style.prototype = {
   show() {
     if (this.isShow) return;
     const style = createElement('style', {
-      innerHTML: getCss(),
+      innerHTML: getCss(prefixCls),
       attr: {
         id: this.id
       }

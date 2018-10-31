@@ -95,15 +95,60 @@ export const extend = (function() {
     return o;
   };
 })();
-
+export function checkBooleanFalse(check) {
+  // 'undefined',undefined,0,'0',false,'false',
+  return (
+    typeof check === 'undefined' ||
+    (typeof check === 'boolean' && !check) ||
+    check === 0 ||
+    check === '0' ||
+    check === 'undefined' ||
+    check === 'false'
+  );
+}
+export function isUndefined(check) {
+  return typeof check === 'undefined';
+}
 export function commonData() {
   return {
     prefixCls: 'wz-popup'
   };
 }
-export function getCss() {
+export function getCss(prefixCls) {
   const css =
-    ".wz-popup-mask {\r\n  width: 100%;\r\n  height: 100%;\r\n  background: #000;\r\n  z-index: 999999;\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  opacity: 0;\r\n}\r\n\r\n.wz-popup {\r\n  /* display: none; */\r\n  opacity: 0;\r\n  opacity: 1;\r\n  width: 78%;\r\n  padding: 0 1rem;\r\n  transition: all 0.2s ease-in-out;\r\n  position: fixed;\r\n  z-index: 1000000;\r\n  top: 50%;\r\n  left: 50%;\r\n  margin: 0 auto;\r\n  margin-left: -39%;\r\n  background: #fff;\r\n  color: #555;\r\n  font-size: 14px;\r\n  font-family: -apple-system, Hiragino Sans GB, BlinkMacSystemFont, Segoe UI,\r\n    Roboto, Helvetica Neue, Arial, sans-serif;\r\n  border-radius: 5px;\r\n  -webkit-border-radius: 5px;\r\n  overflow: hidden;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.wz-popup .wz-popup-header {\r\n  height: 45px;\r\n  line-height: 45px;\r\n  border-bottom: 1px solid #e3e3e3;\r\n}\r\n\r\n.wz-popup .wz-popup-body {\r\n  margin: 25px 15px;\r\n}\r\n\r\n.wz-popup .wz-popup-footer {\r\n  border-top: 1px solid #e3e3e3;\r\n}\r\n\r\n.wz-popup .wz-popup-btn {\r\n  outline: 0 none;\r\n  text-decoration: none;\r\n  float: left;\r\n  height: 40px;\r\n  line-height: 40px;\r\n  color: #999;\r\n}\r\n\r\n.wz-popup-btn + .wz-popup-btn {\r\n  position: relative;\r\n  color: #0b99ff;\r\n}\r\n\r\n.wz-popup-btn + .wz-popup-btn:before {\r\n  content: '';\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  bottom: 0;\r\n  border-left: 1px solid #e3e3e3;\r\n  -webkit-transform: scaleX(0.5);\r\n  transform: scaleX(0.5);\r\n}\r\n\r\n.wz-popup .wz-popup-center {\r\n  text-align: center;\r\n}\r\n";
+    '.' +
+    prefixCls +
+    '-mask {\r\n  width: 100%;\r\n  height: 100%;\r\n  background: #000;\r\n  z-index: 999999;\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  opacity: 0;\r\n}\r\n\r\n.' +
+    prefixCls +
+    ' {\r\n  /* display: none; */\r\n  opacity: 0;\r\n  opacity: 1;\r\n  width: 78%;\r\n  padding: 0 1rem;\r\n  transition: all 0.2s ease-in-out;\r\n  position: fixed;\r\n  z-index: 1000000;\r\n  top: 50%;\r\n  left: 50%;\r\n  margin: 0 auto;\r\n  margin-left: -39%;\r\n  background: #fff;\r\n  color: #555;\r\n  font-size: 14px;\r\n  font-family: -apple-system, Hiragino Sans GB, BlinkMacSystemFont, Segoe UI,\r\n    Roboto, Helvetica Neue, Arial, sans-serif;\r\n  border-radius: 5px;\r\n  -webkit-border-radius: 5px;\r\n  overflow: hidden;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.' +
+    prefixCls +
+    ' .' +
+    prefixCls +
+    '-header {\r\n  height: 45px;\r\n  line-height: 45px;\r\n  border-bottom: 1px solid #e3e3e3;\r\n}\r\n\r\n.' +
+    prefixCls +
+    ' .' +
+    prefixCls +
+    '-body {\r\n  margin: 25px 15px;\r\n}\r\n\r\n.' +
+    prefixCls +
+    ' .' +
+    prefixCls +
+    '-footer {\r\n  border-top: 1px solid #e3e3e3;\r\n}\r\n\r\n.' +
+    prefixCls +
+    ' .' +
+    prefixCls +
+    '-btn {\r\n  outline: 0 none;\r\n  text-decoration: none;\r\n  float: left;\r\n  height: 40px;\r\n  line-height: 40px;\r\n  color: #999;\r\n}\r\n\r\n.' +
+    prefixCls +
+    '-btn + .' +
+    prefixCls +
+    '-btn {\r\n  position: relative;\r\n  color: #0b99ff;\r\n}\r\n\r\n.' +
+    prefixCls +
+    '-btn + .' +
+    prefixCls +
+    "-btn:before {\r\n  content: '';\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  bottom: 0;\r\n  border-left: 1px solid #e3e3e3;\r\n  -webkit-transform: scaleX(0.5);\r\n  transform: scaleX(0.5);\r\n}\r\n\r\n." +
+    prefixCls +
+    ' .' +
+    prefixCls +
+    '-center {\r\n  text-align: center;\r\n}\r\n';
   return css;
 }
 export default {
@@ -112,6 +157,8 @@ export default {
   bindEvent,
   opacityAnimation,
   extend,
+  checkBooleanFalse,
+  isUndefined,
   commonData,
   getCss
 };

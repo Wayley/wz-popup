@@ -39,7 +39,7 @@ function Dialog(opts) {
 
     //opts合并到defaults上
     this.options = extend({}, defaults, opts);
-    this.options.id = `${prefixCls}` + this.options.v;
+    this.options.id = `${prefixCls}` + '-' + this.options.v;
     this.isShow = false;
     queue.push(this);
 

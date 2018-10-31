@@ -26,7 +26,11 @@ export default {
         }, 500);
         console.log('500ms后会关闭');
       }
-      const popup = new Popup({ v: '1111', content: '你好啊1' });
+      const popup = new Popup({
+        v: '1111',
+        autoShow: false, // 'undefined',undefined,0,'0',false,'false'
+        content: '你好啊1'
+      });
 
       const popup3 = new Popup({
         v: '3333',
@@ -50,7 +54,7 @@ export default {
           }
         ]
       });
-      // popup3.show();
+      popup3.show();
       const popup2 = new Popup({
         v: '2222',
         content: '你好啊2',
@@ -69,6 +73,22 @@ export default {
           }
         ]
       });
+      const popup4 = new Popup('你好啊4');
+      popup.show();
+    },
+    dd() {
+      let a = 'a';
+      function ED(a) {
+        a = a || a;
+        console.log(a, 222);
+      }
+      ED.prototype = {
+        show() {
+          console.log(111, a);
+        }
+      };
+      let s = new ED('b');
+      s.show();
     }
   }
 };

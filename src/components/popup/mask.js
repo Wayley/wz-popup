@@ -2,6 +2,7 @@ import {
   createElement,
   bindEvent,
   opacityAnimation,
+  checkBooleanFalse,
   commonData
 } from './utils';
 const prefixCls = commonData().prefixCls; // 前缀
@@ -22,16 +23,8 @@ function Mask(options) {
 
   this.delay = (options && options.delay) || 200;
   // autoShow
-  if (
-    options &&
-    ((typeof options.autoShow === 'boolean' && !options.autoShow) ||
-      options.autoShow === 0 ||
-      options.autoShow === '0')
-  ) {
-    this.autoShow = false;
-  } else {
-    this.autoShow = true;
-  }
+  this.autoShow = !checkBooleanFalse(options.autoShow);
+
   this.id = `${prefixCls}` + '-mask-' + v;
   queue.push(this);
   // 销毁之前的实例

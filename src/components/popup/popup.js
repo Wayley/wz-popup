@@ -1,13 +1,14 @@
-import { extend } from './utils';
+import { extend, checkBooleanFalse } from './utils';
 
 import Mask from './mask';
 import Style from './style';
 import Dialog from './dialog';
-
+let ii = 0;
 let queue = [];
 function Popup(options) {
   let self = this;
   let defaults = {
+    autoShow: true, //默认自动显示
     v: 'v' + Math.floor(Math.random() * 10000) + new Date().valueOf(), // 实例 戳id
     btns: [
       {
@@ -24,28 +25,13 @@ function Popup(options) {
     if (typeof options === 'string' || typeof options === 'number') {
       options = { content: options };
     }
-    this.options = extend({}, defaults, options);
+    let opt = extend({}, defaults, options);
+    this.options = opt;
+
     // autoShow
-    if (
-      (typeof options.autoShow === 'boolean' && !options.autoShow) ||
-      options.autoShow === 0 ||
-      options.autoShow === '0'
-    ) {
-      this.options.autoShow = false;
-    } else {
-      this.options.autoShow = true;
-    }
+    this.options.autoShow = !checkBooleanFalse(opt.autoShow);
     // autoClose
-    if (
-      (typeof options.autoClose === 'boolean' && !options.autoClose) ||
-      options.autoClose === 0 ||
-      options.autoClose === '0'
-    ) {
-      this.options.autoClose = false;
-    } else {
-      this.options.autoClose = true;
-    }
-    console.log(this.options.autoClose);
+    this.options.autoClose = !checkBooleanFalse(opt.autoClose);
 
     // 三个实例
     this.style = new Style(this.options.v, this.options.autoShow);
@@ -58,6 +44,8 @@ function Popup(options) {
     this.dialog = new Dialog(this.options);
 
     queue.push(this);
+    ii++;
+    console.log(ii, 'iiiiiiiiiiiiii');
 
     // 销毁之前的实例
     if (queue.length > 1) {
@@ -75,7 +63,11 @@ function Popup(options) {
   }
 }
 Popup.prototype.show = function() {
+  console.log(this, this.isShow, 'thisssss');
+
   if (this.isShow) return;
+  console.log('has returned');
+
   this.style.show();
   this.mask.show();
   this.dialog.show();
