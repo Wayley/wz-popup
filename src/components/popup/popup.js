@@ -3,7 +3,6 @@ import { extend, checkBooleanFalse } from './utils';
 import Mask from './mask';
 import Style from './style';
 import Dialog from './dialog';
-let ii = 0;
 let queue = [];
 function Popup(options) {
   let self = this;
@@ -44,8 +43,6 @@ function Popup(options) {
     this.dialog = new Dialog(this.options);
 
     queue.push(this);
-    ii++;
-    console.log(ii, 'iiiiiiiiiiiiii');
 
     // 销毁之前的实例
     if (queue.length > 1) {
@@ -63,10 +60,7 @@ function Popup(options) {
   }
 }
 Popup.prototype.show = function() {
-  console.log(this, this.isShow, 'thisssss');
-
   if (this.isShow) return;
-  console.log('has returned');
 
   this.style.show();
   this.mask.show();
