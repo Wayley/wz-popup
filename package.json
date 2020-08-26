@@ -1,6 +1,6 @@
 {
   "name": "wz-popup",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "description": "popup",
   "main": "dist/popup.js",
   "module": "dist/popup.es.js",
