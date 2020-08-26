@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
   typeof define === 'function' && define.amd ? define(['exports'], factory) :
-  (factory((global.Popup = {})));
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.Popup = {}));
 }(this, (function (exports) { 'use strict';
 
   function createElement(nodeName, options) {
@@ -478,7 +478,9 @@
           queue$3[i].remove();
         }
       }
-      if (queue$3.length === 1) ; else {
+      if (queue$3.length === 1) {
+        // this.show();
+      } else {
         queue$3 = [];
       }
     } catch (error) {
@@ -503,45 +505,15 @@
     queue$3.splice(0, 1);
   };
 
-  function styleInject(css, ref) {
-    if ( ref === void 0 ) ref = {};
-    var insertAt = ref.insertAt;
-
-    if (!css || typeof document === 'undefined') { return; }
-
-    var head = document.head || document.getElementsByTagName('head')[0];
-    var style = document.createElement('style');
-    style.type = 'text/css';
-
-    if (insertAt === 'top') {
-      if (head.firstChild) {
-        head.insertBefore(style, head.firstChild);
-      } else {
-        head.appendChild(style);
-      }
-    } else {
-      head.appendChild(style);
-    }
-
-    if (style.styleSheet) {
-      style.styleSheet.cssText = css;
-    } else {
-      style.appendChild(document.createTextNode(css));
-    }
-  }
-
-  var css = ".aa {\r\n  color: red;\r\n}\r\n.wz-popup-mask {\r\n  width: 100%;\r\n  height: 100%;\r\n  background: #000;\r\n  z-index: 999999;\r\n  position: fixed;\r\n  top: 0;\r\n  left: 0;\r\n  opacity: 0.6;\r\n}\r\n\r\n.wz-popup {\r\n  width: 78%;\r\n  padding: 0 1rem;\r\n  opacity: 1;\r\n  -webkit-transition: all 0.2s ease-in-out;\r\n  transition: all 0.2s ease-in-out;\r\n  position: fixed;\r\n  z-index: 1000000;\r\n  top: 50%;\r\n  left: 50%;\r\n  margin: 0 auto;\r\n  margin-left: -39%;\r\n  background: #fff;\r\n  color: #555;\r\n  font-size: 14px;\r\n  font-family: -apple-system, Hiragino Sans GB, BlinkMacSystemFont, Segoe UI,\r\n    Roboto, Helvetica Neue, Arial, sans-serif;\r\n  border-radius: 5px;\r\n  -webkit-border-radius: 5px;\r\n  overflow: hidden;\r\n  -webkit-box-sizing: border-box;\r\n          box-sizing: border-box;\r\n}\r\n\r\n.wz-popup .wz-popup-header {\r\n  height: 45px;\r\n  line-height: 45px;\r\n  border-bottom: 1px solid #e3e3e3;\r\n}\r\n\r\n.wz-popup .wz-popup-body {\r\n  margin: 25px 15px;\r\n}\r\n\r\n.wz-popup .wz-popup-footer {\r\n  border-top: 1px solid #e3e3e3;\r\n}\r\n\r\n.wz-popup .wz-popup-btn {\r\n  outline: 0 none;\r\n  text-decoration: none;\r\n  float: left;\r\n  height: 40px;\r\n  line-height: 40px;\r\n  color: #999;\r\n}\r\n\r\n.wz-popup-btn + .wz-popup-btn {\r\n  position: relative;\r\n  color: #0b99ff;\r\n}\r\n\r\n.wz-popup-btn + .wz-popup-btn:before {\r\n  content: '';\r\n  height: 100%;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 0;\r\n  bottom: 0;\r\n  border-left: 1px solid #e3e3e3;\r\n  -webkit-transform: scaleX(0.5);\r\n  transform: scaleX(0.5);\r\n}\r\n\r\n.wz-popup .wz-popup-center {\r\n  text-align: center;\r\n}\r\n";
-  styleInject(css);
-
   const Mask$1 = Style;
   const Style$1 = Style;
   const Dialog$1 = Dialog;
   const Popup$1 = Popup;
 
-  exports.Mask = Mask$1;
-  exports.Style = Style$1;
   exports.Dialog = Dialog$1;
+  exports.Mask = Mask$1;
   exports.Popup = Popup$1;
+  exports.Style = Style$1;
   exports.default = Popup$1;
 
   Object.defineProperty(exports, '__esModule', { value: true });
