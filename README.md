@@ -26,8 +26,8 @@ const instance = new Popup({
 
 | 属性      | 说明                                     | 类型                                         | 默认值 | 其他                                                                                          |
 | :-------- | :--------------------------------------- | :------------------------------------------- | :----- | :-------------------------------------------------------------------------------------------- |
-| v         | 唯一标识                                 | `String | Number`                            |        |
-| content   | 内容                                     | `String | Number | Node`                     | `-`    |
+| v         | 唯一标识                                 | `String '|' Number`                          |        |
+| content   | 内容                                     | `String '|' Number '|' Node`                 | `-`    |
 | autoShow  | 是否初始化完成就弹出                     | `Boolean & Like Boolean(eg:0, undefined...)` |        |
 | autoClose | 点击按钮回调处理完成之后是否自动关闭弹框 | `Boolean & Like Boolean(eg:0, undefined...)` | `true` | `如果回调是异步的 那么可设置为false 并再回调中手动关闭(instance.remove()) 不传入btns时会失效` |
 | btns      |                                          | `Array`                                      | `-`    | `[ { name: Any, callback: Function } ]`                                                       |
